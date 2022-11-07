@@ -25,8 +25,8 @@ const Users = () => {
   };
 
   const getUsersPhrase = (number) => {
-    return (number >= 2 && number <= 4) ||
-      (number > 21 &&
+    return (number > 1 && number < 5) ||
+      ((number - 21) % 10 > 0 &&
         ((number - 2) % 10 === 0 ||
           (number - 3) % 10 === 0 ||
           (number - 4) % 10 === 0))
