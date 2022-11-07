@@ -24,37 +24,7 @@ const Users = () => {
     );
   };
 
-  const renderUsers = (usersArr) => {
-    return usersArr.map((user) => {
-      return (
-        <tr key={user._id}>
-          <th>{user.name}</th>
-          <th>
-            {user.qualities.map((quality) => {
-              return (
-                <span className={`badge bg-${quality.color} m-1`}>
-                  {quality.name}
-                </span>
-              );
-            })}
-          </th>
-          <th>{user.profession.name}</th>
-          <th>{user.completedMeetings}</th>
-          <th>{`${user.rate} / 5`}</th>
-          <th>
-            <button
-              onClick={() => handleDelete(user._id)}
-              className="btn btn-danger"
-            >
-              delete
-            </button>
-          </th>
-        </tr>
-      );
-    });
-  };
-
-  const renderTable = (usersArr) => {
+  const renderUsersTable = (usersArr) => {
     return (
       <table className="table">
         <thead>
@@ -67,15 +37,48 @@ const Users = () => {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>{renderUsers(usersArr)}</tbody>
+        <tbody>{renderUsersList(usersArr)}</tbody>
       </table>
+    );
+  };
+
+  const renderUsersList = (usersArr) => {
+    return usersArr.map((user) => {
+      return (
+        <tr key={user._id}>
+          <th>{user.name}</th>
+          <th>{renderUserQualities(user.qualities)}</th>
+          <th>{user.profession.name}</th>
+          <th>{user.completedMeetings}</th>
+          <th>{`${user.rate} / 5`}</th>
+          <th>{renderDeleteButton(user._id)}</th>
+        </tr>
+      );
+    });
+  };
+
+  const renderUserQualities = (qualitiesArr) => {
+    return qualitiesArr.map((quality, index) => {
+      return (
+        <span key={index} className={`badge bg-${quality.color} m-1`}>
+          {quality.name}
+        </span>
+      );
+    });
+  };
+
+  const renderDeleteButton = (userID) => {
+    return (
+      <button className="btn btn-danger" onClick={() => handleDelete(userID)}>
+        delete
+      </button>
     );
   };
 
   return (
     <>
       {renderPhrase(users.length)}
-      {renderTable(users)}
+      {renderUsersTable(users)}
     </>
   );
 };
