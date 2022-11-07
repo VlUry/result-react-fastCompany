@@ -18,7 +18,11 @@ const Users = () => {
         ) : (
           <span className="badge bg-primary m-1">
             {number}{" "}
-            {users.length >= 5 || users.length === 1 ? "человек " : "человека "}
+            {users.length >= 5
+              ? "людей "
+              : users.length > 1
+              ? "человека "
+              : "человек "}
             тусанет с тобой сегодня
           </span>
         )}
