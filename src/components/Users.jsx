@@ -1,11 +1,11 @@
 import { useState } from "react";
-import api from "../api";
+import api from "../api/API";
 
 const Users = () => {
   const [users, setUsers] = useState(api.users.fetchAll());
 
   const handleDelete = (userId) => {
-    setUsers((prevValue) => prevValue.filter((user) => user._id !== userId));
+    setUsers(users.filter((user) => user._id !== userId));
   };
 
   const renderPhrase = (number) => {
@@ -17,7 +17,7 @@ const Users = () => {
           </span>
         ) : (
           <span className="badge bg-primary m-1">
-            {`${number} ${getUsersPhrase(number)} тусанет с тобой сегодня`}
+            {`${number} ${getUsersPhrase(number)} с тобой сегодня`}
           </span>
         )}
       </h3>
@@ -30,8 +30,8 @@ const Users = () => {
         ((number - 2) % 10 === 0 ||
           (number - 3) % 10 === 0 ||
           (number - 4) % 10 === 0))
-      ? "человека"
-      : "человек";
+      ? "человека тусанут"
+      : "человек тусанет";
   };
 
   const renderUsersTable = (usersArr) => {
