@@ -5,14 +5,6 @@ import Qualities from "./Qualities";
 const User = (props) => {
   const { user, onDelete, onSave } = props;
 
-  const deleteUser = () => {
-    onDelete(user._id);
-  };
-
-  const saveUser = () => {
-    onSave(user._id);
-  };
-
   return (
     <tr>
       <th>{user.name}</th>
@@ -23,10 +15,10 @@ const User = (props) => {
       <th>{user.completedMeetings}</th>
       <th>{`${user.rate} / 5`}</th>
       <th>
-        <Bookmark status={user.bookmark} onClick={saveUser} />
+        <Bookmark status={user.bookmark} onClick={() => onSave(user._id)} />
       </th>
       <th>
-        <DeleteButton onClick={deleteUser} />
+        <DeleteButton onClick={() => onDelete(user._id)} />
       </th>
     </tr>
   );

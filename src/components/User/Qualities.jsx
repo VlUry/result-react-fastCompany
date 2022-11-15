@@ -3,8 +3,8 @@ const Qualities = (props) => {
 
   return (
     <>
-      {qualities.map((quality, index) => (
-        <span key={index} className={`badge bg-${quality.color} m-1`}>
+      {qualities.map((quality) => (
+        <span key={quality._id} className={`badge bg-${quality.color} m-1`}>
           {quality.name}
         </span>
       ))}
