@@ -1,3 +1,4 @@
+import React from "react";
 import Bookmark from "./Bookmark";
 import DeleteButton from "./DeleteButton";
 import Qualities from "./Qualities";
