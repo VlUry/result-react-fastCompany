@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const DeleteButton = (props) => {
   const { onClick } = props;
@@ -8,6 +9,10 @@ const DeleteButton = (props) => {
       Удалить
     </button>
   );
+};
+
+DeleteButton.propTypes = {
+  onClick: PropTypes.func.isRequired
 };
 
 export default DeleteButton;
