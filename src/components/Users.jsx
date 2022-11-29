@@ -12,16 +12,16 @@ const Users = () => {
   const [selectedProf, setSelectedProf] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    api.professions.fetchAll().then((data) => setProfessions(data));
+  }, []);
+
   const pageSize = 3;
   const selectedUsers = selectedProf
-    ? users.filter((user) => user.profession === selectedProf)
+    ? users.filter((user) => user.profession.name === selectedProf.name)
     : users;
-  const count = selectedUsers.length;
+  const usersCount = Object.keys(selectedUsers).length;
   const userCrop = paginate(selectedUsers, currentPage, pageSize);
-
-  useEffect(() => {
-    api.professions().then((data) => setProfessions(data));
-  }, []);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -68,8 +68,8 @@ const Users = () => {
         </div>
       )}
       <div className="d-flex flex-column">
-        <SearchStatus usersNum={count} />
-        {count > 0 && (
+        <SearchStatus usersNum={usersCount} />
+        {usersCount > 0 && (
           <table className="table">
             <thead>
               <tr>
@@ -96,7 +96,7 @@ const Users = () => {
         )}
         <div className="d-flex justify-content-center">
           <Pagination
-            itemsCount={count}
+            itemsCount={usersCount}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={handlePageChange}
