@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
-import api from "../api/API";
+import React, { useState } from "react";
 import paginate from "../utils/paginate";
 import Pagination from "./Pagination";
 import SearchStatus from "./SearchStatus";
 import User from "./User/User";
 import GroupList from "./GroupList";
+import PropTypes from "prop-types";
 
-const Users = () => {
-  const [users, setUsers] = useState(api.users.fetchAll());
-  const [professions, setProfessions] = useState();
+const Users = (props) => {
+  const { users, professions, setUsers } = props;
   const [selectedProf, setSelectedProf] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    api.professions.fetchAll().then((data) => setProfessions(data));
-  }, []);
 
   const pageSize = 3;
   const selectedUsers = selectedProf
@@ -105,6 +100,12 @@ const Users = () => {
       </div>
     </div>
   );
+};
+
+Users.propTypes = {
+  users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  setUsers: PropTypes.func.isRequired,
+  professions: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 export default Users;

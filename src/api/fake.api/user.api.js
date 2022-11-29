@@ -11,7 +11,11 @@ const qualities = {
     name: "Странный",
     color: "secondary"
   },
-  buller: { _id: "67rdca3eeb7f6fgeed4711012", name: "Троль", color: "success" },
+  buller: {
+    _id: "67rdca3eeb7f6fgeed4711012",
+    name: "Троль",
+    color: "success"
+  },
   alcoholic: {
     _id: "67rdca3eeb7f6fgeed471101",
     name: "Алкоголик",
@@ -139,6 +143,14 @@ const users = [
     bookmark: false
   }
 ];
-export function fetchAll() {
-  return users;
-}
+
+const fetchAll = () =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(users);
+    }, 2000);
+  });
+
+export default {
+  fetchAll
+};
