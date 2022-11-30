@@ -9,9 +9,11 @@ function App() {
 
   const fetchData = async () => {
     try {
-      await api.users.fetchAll().then((data) => setUsers(data));
+      await api.users.fetchAll().then((data) => setUsers(Object.values(data))); // Object.values позволяет работать и с объектам, и с массивами
       setUsersFetched(true);
-      await api.professions.fetchAll().then((data) => setProfessions(data));
+      await api.professions
+        .fetchAll()
+        .then((data) => setProfessions(Object.values(data)));
     } catch (err) {
       console.error(err);
     }

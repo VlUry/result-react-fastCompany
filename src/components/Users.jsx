@@ -15,7 +15,7 @@ const Users = (props) => {
   const selectedUsers = selectedProf
     ? users.filter((user) => user.profession.name === selectedProf.name)
     : users;
-  const usersCount = Object.keys(selectedUsers).length;
+  const usersCount = selectedUsers.length;
   const userCrop = paginate(selectedUsers, currentPage, pageSize);
 
   const handlePageChange = (pageIndex) => {
