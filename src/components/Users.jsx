@@ -19,8 +19,10 @@ const Users = (props) => {
   const userCrop = paginate(selectedUsers, currentPage, pageSize);
 
   useEffect(() => {
-    if (userCrop.length === 0) setCurrentPage((prev) => prev - 1);
-  }, [userCrop]);
+    if (userCrop.length === 0 && currentPage > 1) {
+      return setCurrentPage((prev) => prev - 1);
+    }
+  }, [userCrop.length === 0]);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
