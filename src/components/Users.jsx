@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import paginate from "../utils/paginate";
 import Pagination from "./Pagination";
 import SearchStatus from "./SearchStatus";
@@ -17,6 +17,10 @@ const Users = (props) => {
     : users;
   const usersCount = selectedUsers.length;
   const userCrop = paginate(selectedUsers, currentPage, pageSize);
+
+  useEffect(() => {
+    if (userCrop.length === 0) setCurrentPage((prev) => prev - 1);
+  }, [userCrop]);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
