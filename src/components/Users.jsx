@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
-import api from "../api/API";
 import paginate from "../utils/paginate";
 import Pagination from "./Pagination";
 import SearchStatus from "./SearchStatus";
 import User from "./User/User";
 import GroupList from "./GroupList";
+import PropTypes from "prop-types";
 
-const Users = () => {
-  const [users, setUsers] = useState(api.users.fetchAll());
-  const [professions, setProfessions] = useState();
+const Users = (props) => {
+  const { users, professions, setUsers } = props;
   const [selectedProf, setSelectedProf] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
   const pageSize = 3;
   const selectedUsers = selectedProf
-    ? users.filter((user) => user.profession === selectedProf)
+    ? users.filter((user) => user.profession.name === selectedProf.name)
     : users;
-  const count = selectedUsers.length;
+  const usersCount = selectedUsers.length;
   const userCrop = paginate(selectedUsers, currentPage, pageSize);
 
   useEffect(() => {
-    api.professions().then((data) => setProfessions(data));
-  }, []);
+    if (userCrop.length === 0 && currentPage > 1) {
+      return setCurrentPage((prev) => prev - 1);
+    }
+  }, [userCrop.length === 0]);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -68,8 +69,8 @@ const Users = () => {
         </div>
       )}
       <div className="d-flex flex-column">
-        <SearchStatus usersNum={count} />
-        {count > 0 && (
+        <SearchStatus usersNum={usersCount} />
+        {usersCount > 0 && (
           <table className="table">
             <thead>
               <tr>
@@ -96,7 +97,7 @@ const Users = () => {
         )}
         <div className="d-flex justify-content-center">
           <Pagination
-            itemsCount={count}
+            itemsCount={usersCount}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={handlePageChange}
@@ -105,6 +106,12 @@ const Users = () => {
       </div>
     </div>
   );
+};
+
+Users.propTypes = {
+  users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  setUsers: PropTypes.func.isRequired,
+  professions: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 export default Users;
