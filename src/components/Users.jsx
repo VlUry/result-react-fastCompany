@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import SearchStatus from "./SearchStatus";
 import GroupList from "./GroupList";
 import PropTypes from "prop-types";
-import UsersTable from "./UsersTable";
+import UsersTable from "./UsersTable/UsersTable";
 import _ from "lodash";
 
 const Users = (props) => {
@@ -83,8 +83,8 @@ const Users = (props) => {
             users={userCrop}
             handleDelete={handleDelete}
             handleSave={handleSave}
-            onSort={handleSort}
-            currentSort={sortBy}
+            handleSort={handleSort}
+            selectedSort={sortBy}
           />
         )}
         <div className="d-flex justify-content-center">
