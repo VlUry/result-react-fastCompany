@@ -1,18 +1,35 @@
 import React from "react";
-import User from "../User/User";
+// import User from "../User/User";
 import PropTypes from "prop-types";
 import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
+import Bookmark from "../User/Bookmark";
+import DeleteButton from "../User/DeleteButton";
+import Qualities from "../User/Qualities";
 
 const UsersTable = (props) => {
-  const { users, handleDelete, handleSave, handleSort, selectedSort } = props;
+  const { users, handleSort, selectedSort, handleSave, handleDelete } = props;
   const columns = {
-    name: { iter: "name", name: "Имя" },
-    qualities: { name: "Качества" },
-    profession: { iter: "profession.name", name: "Профессия" },
-    completedMeetings: { iter: "completedMeetings", name: "Встретился, раз" },
-    rate: { iter: "rate", name: "Рейтинг" },
-    bookmark: { iter: "bookmark", name: "Избранное" },
-    delete: {}
+    name: { path: "name", name: "Имя" },
+    qualities: {
+      name: "Качества",
+      component: (user) => <Qualities qualities={user.qualities} />
+    },
+    profession: { path: "profession.name", name: "Профессия" },
+    completedMeetings: { path: "completedMeetings", name: "Встретился, раз" },
+    rate: { path: "rate", name: "Рейтинг" },
+    bookmark: {
+      path: "bookmark",
+      name: "Избранное",
+      component: (user) => (
+        <Bookmark status={user.bookmark} onClick={() => handleSave(user._id)} />
+      )
+    },
+    delete: {
+      component: (user) => (
+        <DeleteButton onClick={() => handleDelete(user._id)} />
+      )
+    }
   };
 
   return (
@@ -22,7 +39,8 @@ const UsersTable = (props) => {
         selectedSort={selectedSort}
         columns={columns}
       />
-      <tbody>
+      <TableBody data={users} columns={columns} />
+      {/* <tbody>
         {users.map((user) => (
           <User
             key={user._id}
@@ -31,7 +49,7 @@ const UsersTable = (props) => {
             onSave={handleSave}
           />
         ))}
-      </tbody>
+      </tbody> */}
     </table>
   );
 };

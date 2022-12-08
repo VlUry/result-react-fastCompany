@@ -9,19 +9,19 @@ const User = (props) => {
 
   return (
     <tr>
-      <th>{user.name}</th>
-      <th>
+      <td>{user.name}</td>
+      <td>
         <Qualities qualities={user.qualities} />
-      </th>
-      <th>{user.profession.name}</th>
-      <th>{user.completedMeetings}</th>
-      <th>{`${user.rate} / 5`}</th>
-      <th>
+      </td>
+      <td>{user.profession.name}</td>
+      <td>{user.completedMeetings}</td>
+      <td>{`${user.rate} / 5`}</td>
+      <td>
         <Bookmark status={user.bookmark} onClick={() => onSave(user._id)} />
-      </th>
-      <th>
+      </td>
+      <td>
         <DeleteButton onClick={() => onDelete(user._id)} />
-      </th>
+      </td>
     </tr>
   );
 };
