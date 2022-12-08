@@ -1,11 +1,9 @@
 import React from "react";
-// import User from "../User/User";
 import PropTypes from "prop-types";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
 import Bookmark from "../User/Bookmark";
 import DeleteButton from "../User/DeleteButton";
 import Qualities from "../User/Qualities";
+import Table from "./Table";
 
 const UsersTable = (props) => {
   const { users, handleSort, selectedSort, handleSave, handleDelete } = props;
@@ -32,26 +30,7 @@ const UsersTable = (props) => {
     }
   };
 
-  return (
-    <table className="table">
-      <TableHeader
-        onSort={handleSort}
-        selectedSort={selectedSort}
-        columns={columns}
-      />
-      <TableBody data={users} columns={columns} />
-      {/* <tbody>
-        {users.map((user) => (
-          <User
-            key={user._id}
-            user={user}
-            onDelete={handleDelete}
-            onSave={handleSave}
-          />
-        ))}
-      </tbody> */}
-    </table>
-  );
+  return <Table {...{ handleSort, selectedSort, columns, data: users }} />;
 };
 
 UsersTable.propTypes = {
