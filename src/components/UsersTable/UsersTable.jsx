@@ -7,6 +7,7 @@ import Table from "./Table";
 
 const UsersTable = (props) => {
   const { users, handleSort, selectedSort, handleSave, handleDelete } = props;
+
   const columns = {
     name: { path: "name", name: "Имя" },
     qualities: {

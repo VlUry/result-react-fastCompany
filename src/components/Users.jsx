@@ -28,7 +28,7 @@ const Users = () => {
 
   const [selectedProf, setSelectedProf] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" });
+  const [sortBy, setSortBy] = useState({ path: "", order: "" });
   const pageSize = 3;
 
   const handleSort = (item) => {
