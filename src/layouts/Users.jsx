@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import api from "../api/API";
 import paginate from "../utils/paginate";
 import Pagination from "../components/Pagination";
-import SearchStatus from "../components/SearchStatus";
-import GroupList from "../components/GroupList";
+import SearchStatus from "../components/User/SearchStatus";
+import GroupList from "../components/User/GroupList";
 import UsersTable from "../components/User/UsersTable";
 import _ from "lodash";
 
