@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import API from "../../api/API";
+import LoadingSpinner from "../LoadingSpinner";
 import Qualities from "./Qualities";
 
 const User = () => {
@@ -38,7 +39,7 @@ const User = () => {
     );
   }
 
-  return <p>Загрузка...</p>;
+  return <LoadingSpinner />;
 };
 
 export default User;

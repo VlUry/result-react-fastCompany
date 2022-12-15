@@ -4,12 +4,21 @@ import Bookmark from "./Bookmark";
 import DeleteButton from "./DeleteButton";
 import Qualities from "./Qualities";
 import Table from "../Table/Table";
+import { Link } from "react-router-dom";
 
 const UsersTable = (props) => {
   const { users, handleSort, selectedSort, handleSave, handleDelete } = props;
 
   const columns = {
-    name: { path: "name", name: "Имя" },
+    name: {
+      path: "name",
+      name: "Имя",
+      component: (user) => (
+        <Link to={`/users/${user._id}`}>
+          <h5>{user.name}</h5>
+        </Link>
+      )
+    },
     qualities: {
       name: "Качества",
       component: (user) => <Qualities qualities={user.qualities} />

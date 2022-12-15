@@ -6,6 +6,7 @@ import SearchStatus from "../components/Users/SearchStatus";
 import GroupList from "../components/Users/GroupList";
 import UsersTable from "../components/Users/UsersTable";
 import _ from "lodash";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Users = () => {
   const [users, setUsers] = useState();
@@ -116,7 +117,7 @@ const Users = () => {
     );
   }
 
-  return <p>Загрузка...</p>;
+  return <LoadingSpinner />;
 };
 
 export default Users;
