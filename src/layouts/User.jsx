@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import API from "../../api/API";
-import LoadingSpinner from "../LoadingSpinner";
-import Qualities from "./Qualities";
+import API from "../api/API";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Qualities from "../components/Users/Qualities";
 
 const User = () => {
   const params = useParams();

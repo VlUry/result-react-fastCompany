@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation";
 import Users from "./layouts/Users";
 import Login from "./layouts/Login";
 import Main from "./layouts/Main";
-import User from "./components/Users/User";
+import User from "./layouts/User";
 
 function App() {
   return (
