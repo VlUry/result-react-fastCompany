@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import api from "../api/API";
 import paginate from "../utils/paginate";
 import Pagination from "../components/Pagination";
-import SearchStatus from "../components/User/SearchStatus";
-import GroupList from "../components/User/GroupList";
-import UsersTable from "../components/User/UsersTable";
+import SearchStatus from "../components/Users/SearchStatus";
+import GroupList from "../components/Users/GroupList";
+import UsersTable from "../components/Users/UsersTable";
 import _ from "lodash";
 
 const Users = () => {

@@ -1,34 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
-  const [activeLink, setActiveLink] = useState();
+  const location = useLocation();
 
-  const linkStyle = (link) => {
-    return "nav-link " + (activeLink === link ? "active" : "");
+  const linkStyle = (path) => {
+    return "nav-link " + (location.pathname === path ? "active" : "");
   };
 
   return (
     <nav className="nav nav-pills m-2">
-      <Link
-        to="/"
-        className={linkStyle("home")}
-        onClick={() => setActiveLink("home")}
-      >
+      <Link to="/" className={linkStyle("/")}>
         Home
       </Link>
-      <Link
-        to="/login"
-        className={linkStyle("login")}
-        onClick={() => setActiveLink("login")}
-      >
+      <Link to="/login" className={linkStyle("/login")}>
         Login
       </Link>
-      <Link
-        to="/users"
-        className={linkStyle("users")}
-        onClick={() => setActiveLink("users")}
-      >
+      <Link to="/users" className={linkStyle("/users")}>
         Users
       </Link>
     </nav>
