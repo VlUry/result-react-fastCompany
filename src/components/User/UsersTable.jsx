@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Bookmark from "../User/Bookmark";
-import DeleteButton from "../User/DeleteButton";
-import Qualities from "../User/Qualities";
-import Table from "./Table";
+import Bookmark from "./Bookmark";
+import DeleteButton from "./DeleteButton";
+import Qualities from "./Qualities";
+import Table from "../Table/Table";
 
 const UsersTable = (props) => {
   const { users, handleSort, selectedSort, handleSave, handleDelete } = props;

@@ -1,8 +1,14 @@
 import React from "react";
-import Users from "./components/Users";
+import Navigation from "./components/Navigation";
+import Users from "./layouts/Users";
 
 function App() {
-  return <Users />;
+  return (
+    <>
+      <Navigation />
+      <Users />
+    </>
+  );
 }
 
 export default App;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/API";
 import paginate from "../utils/paginate";
-import Pagination from "./Pagination";
-import SearchStatus from "./SearchStatus";
-import GroupList from "./GroupList";
-import UsersTable from "./UsersTable/UsersTable";
+import Pagination from "../components/Pagination";
+import SearchStatus from "../components/SearchStatus";
+import GroupList from "../components/GroupList";
+import UsersTable from "../components/User/UsersTable";
 import _ from "lodash";
 
 const Users = () => {
@@ -81,7 +81,7 @@ const Users = () => {
     return (
       <div className="d-flex">
         {professions && (
-          <div className="d-flex flex-column flex-shrink-0 p-3">
+          <div className="d-flex flex-column flex-shrink-0 m-2">
             <GroupList
               items={professions}
               selectedItem={selectedProf}
@@ -92,7 +92,7 @@ const Users = () => {
             </button>
           </div>
         )}
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column m-2">
           <SearchStatus usersNum={usersCount} />
           {usersCount > 0 && (
             <UsersTable
@@ -116,7 +116,7 @@ const Users = () => {
     );
   }
 
-  return "Загрузка...";
+  return <p>Загрузка...</p>;
 };
 
 export default Users;
