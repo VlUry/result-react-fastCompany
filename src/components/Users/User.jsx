@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router";
-import API from "../api/API";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Qualities from "../components/Users/Qualities";
+import { useHistory } from "react-router";
+import API from "../../api/API";
+import LoadingSpinner from "../LoadingSpinner";
+import Qualities from "./Qualities";
+import PropTypes from "prop-types";
 
-const User = () => {
-  const params = useParams();
+const User = ({ userId }) => {
   const history = useHistory();
   const [user, setUser] = useState();
 
   const fetchData = async () => {
     try {
-      await API.users.getById(params.userId).then((data) => setUser(data));
+      await API.users.getById(userId).then((data) => setUser(data));
     } catch (err) {
       console.error(err);
     }
@@ -40,6 +40,10 @@ const User = () => {
   }
 
   return <LoadingSpinner />;
+};
+
+User.propTypes = {
+  userId: PropTypes.string.isRequired
 };
 
 export default User;

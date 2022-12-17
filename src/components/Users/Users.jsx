@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import api from "../api/API";
-import paginate from "../utils/paginate";
-import Pagination from "../components/Pagination";
-import SearchStatus from "../components/Users/SearchStatus";
-import GroupList from "../components/Users/GroupList";
-import UsersTable from "../components/Users/UsersTable";
+import api from "../../api/API";
+import paginate from "../../utils/paginate";
+import Pagination from "../Pagination";
+import SearchStatus from "./SearchStatus";
+import GroupList from "./GroupList";
+import UsersTable from "./UsersTable";
 import _ from "lodash";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner";
 
 const Users = () => {
   const [users, setUsers] = useState();

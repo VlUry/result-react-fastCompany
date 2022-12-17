@@ -1,10 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import Navigation from "./components/Navigation";
-import Users from "./layouts/Users";
 import Login from "./layouts/Login";
 import Main from "./layouts/Main";
-import User from "./layouts/User";
+import UsersLayout from "./layouts/UsersLayout";
 
 function App() {
   return (
@@ -13,8 +12,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Main} />
         <Route path="/login" component={Login} />
-        <Route path="/users/:userId" component={User} />
-        <Route path="/users" component={Users} />
+        <Route path="/users/:userId?" component={UsersLayout} />
       </Switch>
     </>
   );
