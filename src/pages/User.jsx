@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import API from "../../api/API";
-import LoadingSpinner from "../LoadingSpinner";
-import Qualities from "./Qualities";
+import API from "../api/API";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Qualities from "../components/Users/Qualities";
 import PropTypes from "prop-types";
 
 const User = ({ userId }) => {
