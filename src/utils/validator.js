@@ -2,13 +2,31 @@ export function validator(data, config) {
   const errors = {};
 
   function validate(validateMethod, data, config) {
+    const emailRegExp = /^\S+@\S+\.\S+$/g;
+    const capitalRegExp = /[A-Z]+/g;
+    const digitRegExp = /\d+/g;
+    let statusValidate;
+
     switch (validateMethod) {
       case "isRequired":
-        if (data.trim() === "") return config.message;
+        statusValidate = data.trim() === "";
+        break;
+      case "isEmail":
+        statusValidate = !emailRegExp.test(data);
+        break;
+      case "isCapitalSymbol":
+        statusValidate = !capitalRegExp.test(data);
+        break;
+      case "isContainDigit":
+        statusValidate = !digitRegExp.test(data);
+        break;
+      case "min":
+        statusValidate = data.length < config.value;
         break;
       default:
         break;
     }
+    if (statusValidate) return config.message;
   }
 
   for (const fieldName in data) {
@@ -18,7 +36,7 @@ export function validator(data, config) {
         data[fieldName],
         config[fieldName][validateMethod]
       );
-      if (error) errors[fieldName] = error;
+      if (error && !errors[fieldName]) errors[fieldName] = error;
     }
   }
 
