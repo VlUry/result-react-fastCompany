@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const TextField = ({ label, type, name, value, onChange, error }) => {
+const TextField = ({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  error,
+  placeholder
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
@@ -13,8 +21,8 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
   };
 
   return (
-    <div className="mb-4">
-      <label htmlFor={name}>{label}</label>
+    <div className={name ? "mb-4" : ""}>
+      {label && <label htmlFor={name}>{label}</label>}
       <div className="input-group has-validation">
         <input
           type={showPassword ? "text" : type}
@@ -23,6 +31,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
           value={value}
           onChange={onChange}
           className={getInpitClasses()}
+          placeholder={placeholder}
         />
         {type === "password" && (
           <button
@@ -49,7 +58,8 @@ TextField.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  error: PropTypes.string
+  error: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default TextField;

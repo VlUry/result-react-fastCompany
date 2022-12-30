@@ -7,6 +7,7 @@ import GroupList from "../components/Users/GroupList";
 import UsersTable from "../components/Users/UsersTable";
 import _ from "lodash";
 import LoadingSpinner from "../components/LoadingSpinner";
+import TextField from "../components/TextField";
 
 const Users = () => {
   const [users, setUsers] = useState();
@@ -84,7 +85,9 @@ const Users = () => {
     const filteredUsers = () => {
       switch (filter) {
         case "search":
-          return users.filter((user) => user.name.includes(search));
+          return users.filter((user) =>
+            user.name.toLowerCase().includes(search.toLowerCase().trim())
+          );
         case "profession":
           return users.filter(
             (user) => user.profession.name === selectedProf.name
@@ -123,9 +126,8 @@ const Users = () => {
         )}
         <div className="d-flex flex-column m-2">
           <SearchStatus usersNum={usersCount} />
-          <input
+          <TextField
             type="text"
-            className="form-control"
             placeholder="Найти..."
             value={search}
             onChange={handleSearch}
